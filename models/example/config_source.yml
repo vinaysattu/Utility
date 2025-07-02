@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: dbt_config
+    database: "{{ env_var('DBT_SILVER_DATABASE') | as_text }}"
+    schema: DBT_MONITOR
+    tables:
+      - name: dbt_model_audit_t
+        meta:
+          description: "this is a config and audit table to fetch audit details"
+      - name: dbt_batch_audit_t
+        meta:
+          description: "this is a audit table to fetch batchid"
+
+  - name: dbt_audit
+    database: "{{ env_var('DBT_SILVER_DATABASE') | as_text }}"
+    schema: DBT_MONITOR
+    tables:
+      - name: dbt_model_pre_validation_check_t
+        meta:
+          description: "this is a audit table to read/write prevalidation check details(Bad data)"
+      - name: dbt_mysql_deletion_log_t
+        meta:
+          description: "this is a audit table to log deletions for each model from source"
+      - name: dbt_schema_drift_audit_t
+        meta:
+          description: "this is a audit table which captures the Schema differences (Schema Drift)"
