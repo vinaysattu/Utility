@@ -57,5 +57,5 @@ values (source.model_id, source.model_grp, source.key_column, source.validation_
 source.batch_id, source.src_load_ts, current_timestamp::timestamp_ntz, current_timestamp::timestamp_ntz);
 commit;
 {%- endset %}
-{{ do run_query(merge_sql) }}
+{% do run_query(merge_sql) %}
 {% endmacro %}
